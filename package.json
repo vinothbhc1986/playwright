@@ -1,0 +1,21 @@
+{
+  "name": "p2",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:recording": "playwright test tests/recording-example.spec.js",
+    "test:ui": "playwright test --ui",
+    "test:codegen": "playwright codegen",
+    "report": "playwright show-report",
+    "trace": "playwright show-trace"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3"
+  }
+}
