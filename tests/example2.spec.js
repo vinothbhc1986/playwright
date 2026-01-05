@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 
-test.describe('Recording Examples', () => {
+test.describe('Recording', () => {
   
-  test('example with video recording and screenshots', async ({ page }) => {
+  test('video recording and screenshots', async ({ page }) => {
     // Navigate to a page
     await page.goto('https://playwright.dev/');
     
@@ -25,6 +25,27 @@ test.describe('Recording Examples', () => {
     // Take a screenshot of a specific element
     const heading = page.getByRole('heading', { name: 'Installation' });
     await heading.screenshot({ path: 'screenshots/installation-heading.png' });
+  });
+
+  test('trace recording', async ({ page, context }) => {
+    // Start tracing
+  //  await context.tracing.start({ screenshots: true, snapshots: true });
+    
+    try {
+      await page.goto('https://playwright.dev/');
+      
+      // Perform some actions
+      await page.getByRole('link', { name: 'API' }).click();
+      await page.waitForLoadState('networkidle');
+      
+      // Verify something
+      await expect(page).toHaveURL(/.*appi/);
+      
+    } finally {
+      // Stop tracing and save
+     // await context.tracing.stop({ path: 'traces/trace2.zip' });
+
+    }
   });
 });
 
